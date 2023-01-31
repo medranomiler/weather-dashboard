@@ -7,15 +7,14 @@ function handleFormSubmit(e) {
     var city = $('input[name="search-field"]').val()
     var queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${APIKey}`;
     var queryURL2 = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${APIKey}`
-    localStorage.setItem('city', city)
-    var searchHistory = $('#search-history')
-    var previousCity = localStorage.getItem('city')
-    searchHistory.append(`<button class="btn btn-secondary w-100 mt-2 mb-2" disabled>${previousCity}</button>`)
-   
+
+    localStorage.setItem(city, city)
+
+
+        
         fetch(queryURL)
         .then(response => response.json())
         .then(function  (results) {
-            console.log(results)
             var currentCity = document.getElementById('city-name')
             currentCity.innerHTML = results.name
             var temp = document.getElementById('temp')
@@ -57,6 +56,14 @@ function handleFormSubmit(e) {
             }
         })
 }}
+
+for (let i = 0; i < localStorage.length; i++) {
+    var searchHistory = $('#search-history')
+    var previousCities = localStorage.getItem(localStorage.key(i))
+    var btn = `<button class="btn btn-secondary w-100 mt-2 mb-2" disabled>${previousCities}</button>`
+    searchHistory.append(btn)
+  }
+      
 
 addEventListener('submit', handleFormSubmit)
 
