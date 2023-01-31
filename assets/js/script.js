@@ -5,7 +5,7 @@ function handleFormSubmit(e) {
     e.preventDefault()
     var APIKey = "f5e2a1b2fcd57e17e3a70afea6105655";
     var city = $('input[name="search-field"]').val()
-    var queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${APIKey}`;
+    var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${APIKey}`;
     var queryURL2 = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${APIKey}`
 
     localStorage.setItem(city, city)
